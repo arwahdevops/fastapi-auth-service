@@ -1,0 +1,22 @@
+CREATE TABLE `User` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`username` varchar(256) NOT NULL,
+	`password` varchar(512) NOT NULL,
+	`full_name` varchar(256) DEFAULT '',
+	`created_at` datetime NOT NULL DEFAULT current_timestamp(),
+	`modified_at` datetime NOT NULL DEFAULT current_timestamp(),
+	PRIMARY KEY (`id`),
+	KEY `User_name` (`username`)
+);
+
+CREATE TABLE `UserLogin` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`user_id` int(11) NOT NULL,
+	`refresh_token` varchar(512) NOT NULL,
+	`expired_at` datetime NOT NULL DEFAULT current_timestamp(),
+	`created_at` datetime DEFAULT current_timestamp(),
+	`modified_at` datetime DEFAULT current_timestamp(),
+	PRIMARY KEY (`id`),
+	KEY `UserLogin_user_id` (`user_id`),
+	KEY `UserLogin_refresh_token` (`refresh_token`)
+);
